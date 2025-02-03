@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Innovation Ways - Coming Soon</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      text-align: center;
+    }
+    .container {
+      max-width: 600px;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+    }
+    h1 {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 20px;
+    }
+    p {
+      font-size: 1.2rem;
+      color: #555;
+      margin-bottom: 30px;
+    }
+    .email-form {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+    }
+    .email-form input[type="email"] {
+      padding: 10px;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      width: 250px;
+    }
+    .email-form button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    .email-form button:hover {
+      background-color: #0056b3;
+    }
+    footer {
+      margin-top: 30px;
+      font-size: 0.9rem;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Innovation Ways</h1>
+    <p>Our website is under construction. We're working hard to bring you an amazing experience. Stay tuned!</p>
+    <div class="email-form">
+      <input type="email" id="emailInput" placeholder="Enter your email to stay updated" required>
+      <button onclick="sendEmail()">Notify Me</button>
+    </div>
+    <footer>
+      &copy; 2025 Innovation Ways. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    function sendEmail() {
+      const email = document.getElementById('emailInput').value;
+      if (email) {
+        const subject = "Stay Updated - Innovation Ways";
+        const body = `Hello Innovation Ways team,\n\nI would like to stay updated about your launch. My email is: ${email}.\n\nBest regards,\n[Your Name]`;
+        window.location.href = `mailto:sergio.gaspar@innovation-ways.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      } else {
+        alert("Please enter a valid email address.");
+      }
+    }
+  </script>
+</body>
+</html>
