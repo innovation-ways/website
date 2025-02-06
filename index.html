@@ -1,96 +1,154 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>Innovation Ways - Coming Soon</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-      text-align: center;
-    }
-    .container {
-      max-width: 600px;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 10px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-    }
-    h1 {
-      font-size: 2.5rem;
-      color: #333;
-      margin-bottom: 20px;
-    }
-    p {
-      font-size: 1.2rem;
-      color: #555;
-      margin-bottom: 30px;
-    }
-    .email-form {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 10px;
-    }
-    .email-form input[type="email"] {
-      padding: 10px;
-      font-size: 1rem;
-      border: 1px solid #ccc;
-      border-radius: 5px;
-      width: 250px;
-    }
-    .email-form button {
-      padding: 10px 20px;
-      font-size: 1rem;
-      color: #fff;
-      background-color: #007bff;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.3s ease;
-    }
-    .email-form button:hover {
-      background-color: #0056b3;
-    }
-    footer {
-      margin-top: 30px;
-      font-size: 0.9rem;
-      color: #777;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Innovation Ways</title>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-  <div class="container">
-    <h1>Innovation Ways</h1>
-    <p>Our website is under construction. We're working hard to bring you an amazing experience. Stay tuned!</p>
-    <div class="email-form">
-      <input type="email" id="emailInput" placeholder="Enter your email to stay updated" required>
-      <button onclick="sendEmail()">Notify Me</button>
-    </div>
-    <footer>
-      &copy; 2025 Innovation Ways. All rights reserved.
-    </footer>
-  </div>
+<body class="min-h-screen bg-gray-900">
+    <!-- Hero Section -->
+    <header class="relative overflow-hidden bg-gradient-to-r from-blue-900 via-purple-900 to-gray-900">
+        <nav class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-50 items-center">
+                <div class="flex items-center space-x-4">
+                    <img src="img/logo.png" alt="Logo" class="h-80 w-auto">
+                    <span class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400"></span>
+                </div>
+                <div class="hidden md:flex space-x-8">
+					<a href="#solutions" class="text-4xl font-semibold text-gray-300 hover:text-blue-400 transition-colors">Solutions</a>
+					<a href="#features" class="text-4xl font-semibold text-gray-300 hover:text-blue-400 transition-colors">Features</a>
+					<a href="#contact" class="text-4xl font-semibold text-gray-300 hover:text-blue-400 transition-colors">Contact</a>
+				</div>
+            </div>
+        </nav>
+        
+        <div class="relative max-w-7xl mx-auto py-24 px-4 sm:py-32 sm:px-6 lg:px-8">
+            <div class="text-center">
+                <h1 class="text-4xl font-extrabold text-white sm:text-5xl md:text-6xl">
+                    <span class="block">Transform Your Business</span>
+                    <span class="block text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">With Advanced AI Solutions</span>
+                </h1>
+                <p class="mt-6 max-w-md mx-auto text-xl text-gray-300 sm:max-w-3xl">
+                    Leverage the power of Large Language Models to automate processes, gain insights, and scale your operations.
+                </p>
+                <div class="mt-10 max-w-md mx-auto sm:flex sm:justify-center md:mt-12">
+                  <a href="mailto:info@innovation-ways.com?subject=Get Started Inquiry" class="group inline-flex items-center px-8 py-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white text-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all">
+                      Get Started 
+                      <svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                          <line x1="5" y1="12" x2="19" y2="12"></line>
+                          <polyline points="12 5 19 12 12 19"></polyline>
+                      </svg>
+                  </a>
+              </div>
+            </div>
+        </div>
+    </header>
 
-  <script>
-    function sendEmail() {
-      const email = document.getElementById('emailInput').value;
-      if (email) {
-        const subject = "Stay Updated - Innovation Ways";
-        const body = `Hello Innovation Ways team,\n\nI would like to stay updated about your launch. My email is: ${email}.\n\nBest regards,\n[Your Name]`;
-        window.location.href = `mailto:sergio.gaspar@innovation-ways.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      } else {
-        alert("Please enter a valid email address.");
-      }
-    }
-  </script>
+    <!-- Features Section -->
+    <div id="features" class="py-24 bg-gray-900">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="lg:text-center">
+                <h2 class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+                    Our AI Solutions (coming soon)
+                </h2>
+            </div>
+
+            <div class="mt-16">
+                <div class="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-3">
+                    <!-- Feature 1 -->
+                    <div class="p-8 rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 border border-gray-800 hover:border-blue-500 transition-colors">
+                        <div class="flex items-center justify-center">
+                            <svg class="h-12 w-12 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white text-center">Intelligent Chatbots</h3>
+                        <p class="mt-4 text-gray-400 text-center">Custom-trained AI assistants that understand your business context and provide accurate responses.</p>
+                    </div>
+
+                    <!-- Feature 2 -->
+                    <div class="p-8 rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 border border-gray-800 hover:border-blue-500 transition-colors">
+                        <div class="flex items-center justify-center">
+                            <svg class="h-12 w-12 text-purple-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M21 11V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h6"></path>
+                                <path d="M12 12a3 3 0 1 0 0-6 3 3 0 0 0 0 6z"></path>
+                                <path d="M15.41 17.41L19 21l-4-4"></path>
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white text-center">Document Analysis</h3>
+                        <p class="mt-4 text-gray-400 text-center">Extract insights from your documents using advanced natural language processing.</p>
+                    </div>
+
+                    <!-- Feature 3 -->
+                    <div class="p-8 rounded-2xl bg-gradient-to-b from-gray-800 to-gray-900 border border-gray-800 hover:border-blue-500 transition-colors">
+                        <div class="flex items-center justify-center">
+                            <svg class="h-12 w-12 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="18" y1="20" x2="18" y2="10"></line>
+                                <line x1="12" y1="20" x2="12" y2="4"></line>
+                                <line x1="6" y1="20" x2="6" y2="14"></line>
+                            </svg>
+                        </div>
+                        <h3 class="mt-6 text-xl font-semibold text-white text-center">Predictive Analytics</h3>
+                        <p class="mt-4 text-gray-400 text-center">Make data-driven decisions with our AI-powered analytics solutions.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Contact Section -->
+    <div id="contact" class="bg-gray-900 py-24 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-md mx-auto">
+            <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400 text-center mb-12">
+                Get in Touch
+            </h2>
+            <div class="p-1 rounded-2xl bg-gradient-to-r from-blue-500 via-purple-500 to-blue-500">
+                <form class="grid grid-cols-1 gap-6 p-8 bg-gray-900 rounded-xl" action="mailto:info@innovation-ways.com" method="post" enctype="text/plain">
+
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">Name</label>
+                        <input type="text" id="name" class="mt-1 block w-full rounded-lg bg-gray-800 border-transparent focus:border-blue-500 focus:ring-blue-500 text-white">
+                    </div>
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email</label>
+                        <input type="email" id="email" class="mt-1 block w-full rounded-lg bg-gray-800 border-transparent focus:border-blue-500 focus:ring-blue-500 text-white">
+                    </div>
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                        <textarea id="message" rows="4" class="mt-1 block w-full rounded-lg bg-gray-800 border-transparent focus:border-blue-500 focus:ring-blue-500 text-white"></textarea>
+                    </div>
+                    <a href="mailto:info@innovation-ways.com" class="group inline-flex items-center px-8 py-4 rounded-lg bg-gradient-to-r from-blue-500 to-purple-600 text-white text-lg font-medium hover:from-blue-600 hover:to-purple-700 transition-all">
+						Talk to us
+						<svg xmlns="http://www.w3.org/2000/svg" class="ml-2 h-5 w-5 transform group-hover:translate-x-1 transition-transform" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+							<line x1="5" y1="12" x2="19" y2="12"></line>
+							<polyline points="12 5 19 12 12 19"></polyline>
+						</svg>
+					</a>
+                </form>
+            </div>
+        </div>
+    </div>
+	<script>
+    document.querySelector('form').onsubmit = function(e) {
+        e.preventDefault();
+        const name = document.getElementById('name').value;
+        const email = document.getElementById('email').value;
+        const message = document.getElementById('message').value;
+        
+        const mailtoLink = `mailto:info@innovation-ways.com?subject=Website Inquiry from ${name}&body=Name: ${name}%0D%0AEmail: ${email}%0D%0A%0D%0AMessage:%0D%0A${message}`;
+        
+        window.location.href = mailtoLink;
+    };
+</script>
+<footer class="bg-gray-900 py-8">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center">
+          <p class="text-xl font-semibold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-400">
+              Innovation Ways 2025
+          </p>
+      </div>
+  </div>
+</footer>
 </body>
 </html>
