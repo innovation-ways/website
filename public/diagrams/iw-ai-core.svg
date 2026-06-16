@@ -1,0 +1,164 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 880 520"
+     width="880"
+     height="520"
+     style="width:100%;height:auto"
+     role="img"
+     aria-labelledby="iwcore-title iwcore-desc">
+
+  <title id="iwcore-title">IW AI Core: The Orchestration Loop</title>
+  <desc id="iwcore-desc">A cyclic orchestration loop: PostgreSQL holds all state, a daemon polls every 60 seconds, creates a git worktree, runs an LLM agent such as Claude Code or OpenCode, applies fix cycles and quality gates, then squash-merges to main and returns to PostgreSQL. A FastAPI and htmx dashboard observes the loop.</desc>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-dash" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#cbd5e1"/>
+    </marker>
+  </defs>
+
+  <!--
+    Layout: a clockwise loop of 6 boxes arranged roughly as:
+
+        [PostgreSQL]   ← top-centre  (TEAL)
+             ↓
+      [Daemon polls]  ← top-left-ish
+             ↓
+    [Create worktree] ← left
+             ↓
+      [LLM agent]     ← bottom-left
+             ↓
+    [Fix cycles + quality gates] ← bottom-right  (TEAL)
+             ↓
+    [Squash-merge to main]  ← right
+             ↑  (arrow back to PostgreSQL)
+
+    Dashboard box — separate, dashed connector to the loop.
+
+    We'll place boxes around a notional oval. Coordinates:
+
+    PostgreSQL      cx=440 cy=60   (top)
+    Daemon polls    cx=160 cy=160  (top-left)
+    Create worktree cx=80  cy=300  (left)
+    LLM agent       cx=200 cy=430  (bottom-left)
+    Fix cycles      cx=560 cy=430  (bottom-right)   TEAL
+    Squash-merge    cx=760 cy=300  (right)
+
+    Dashboard       cx=680 cy=120  (top-right, off-loop)
+  -->
+
+  <!-- ═══ NODE 1: PostgreSQL (TEAL) — top centre ═══ -->
+  <rect x="310" y="30" width="260" height="80" rx="10"
+        fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+  <text x="440" y="62" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="15" font-weight="600" fill="#0d9488">PostgreSQL</text>
+  <text x="440" y="82" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">all workflow state · task queue</text>
+  <text x="440" y="98" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#0f766e">results · audit log</text>
+
+  <!-- Arrow: PostgreSQL bottom (440,110) → Daemon polls top -->
+  <!-- Daemon polls: x=60 y=150 w=200 h=70, top-centre (160,150) -->
+  <polyline points="440,110 440,130 160,130 160,150"
+            fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 2: Daemon polls ═══ -->
+  <rect x="60" y="150" width="200" height="70" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="160" y="181" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#1f2933">Daemon polls</text>
+  <text x="160" y="200" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">every 60 s</text>
+
+  <!-- Arrow: Daemon bottom (160,220) → Create worktree top (80,280) -->
+  <polyline points="160,220 160,260 80,260 80,280"
+            fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 3: Create git worktree ═══ -->
+  <rect x="20" y="280" width="200" height="70" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="120" y="311" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#1f2933">Create worktree</text>
+  <text x="120" y="330" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">isolated git branch</text>
+
+  <!-- Arrow: worktree bottom (120,350) → LLM agent top (200,390) -->
+  <polyline points="120,350 120,380 200,380 200,390"
+            fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 4: LLM agent ═══ -->
+  <rect x="80" y="390" width="240" height="80" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="200" y="422" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#1f2933">LLM Agent</text>
+  <text x="200" y="442" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">Claude Code · OpenCode</text>
+  <text x="200" y="458" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">runs autonomously</text>
+
+  <!-- Arrow: LLM agent right (320,430) → Fix cycles left (450,430) -->
+  <line x1="320" y1="430" x2="450" y2="430"
+        stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 5: Fix cycles + quality gates (TEAL) ═══ -->
+  <rect x="452" y="390" width="240" height="80" rx="10"
+        fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+  <text x="572" y="422" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#0d9488">Fix cycles</text>
+  <text x="572" y="442" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">review → fix → lint</text>
+  <text x="572" y="458" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">typecheck · quality gates</text>
+
+  <!-- Arrow: Fix cycles top (572,390) → up to squash-merge bottom -->
+  <!-- Squash-merge: x=640 y=280 w=210 h=70, bottom-centre (745,350) -->
+  <polyline points="692,390 760,390 760,350"
+            fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 6: Squash-merge to main ═══ -->
+  <rect x="640" y="280" width="220" height="70" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="750" y="311" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#1f2933">Squash-merge</text>
+  <text x="750" y="330" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">clean history to main</text>
+
+  <!-- Arrow: Squash-merge top (750,280) → up to PostgreSQL right -->
+  <polyline points="750,280 750,70 570,70"
+            fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ DASHBOARD: dashed observer ═══ -->
+  <rect x="620" y="140" width="220" height="80" rx="10"
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="730" y="172" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#64748b">FastAPI + htmx</text>
+  <text x="730" y="191" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#94a3b8">dashboard</text>
+  <text x="730" y="208" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#94a3b8">reads · observes</text>
+
+  <!-- Dashed connector: dashboard left (620,180) → PostgreSQL right (570,70) via elbow -->
+  <polyline points="620,175 590,175 590,110 570,110"
+            fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"
+            marker-end="url(#arr-dash)"/>
+
+</svg>

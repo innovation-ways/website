@@ -1,0 +1,8 @@
+<!-- Concept B — "IW" monogram. Mono W (currentColor) + teal "I" accent (Innovation).
+     Squared geometry to echo Space Grotesk. currentColor inherits the theme when inlined. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"
+     stroke-linecap="round" stroke-linejoin="round">
+  <path d="M6.6 8.5 V23.5" stroke="#0D9488" stroke-width="3.2"/>
+  <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5"
+        stroke="currentColor" stroke-width="3.2"/>
+</svg>

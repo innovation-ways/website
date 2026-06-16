@@ -1,0 +1,152 @@
+---
+import Base from "../layouts/Base.astro";
+
+// Web3Forms access key. Public by design (ships in client HTML); not a secret.
+const WEB3FORMS_ACCESS_KEY = "d23be862-6a2d-4b14-a7e3-88e6d0aa72e1";
+---
+
+<Base
+  path="/contact"
+  title="Contact — Innovation Ways"
+  description="Get in touch with Innovation Ways about production AI and BSS engineering."
+>
+  <section class="mx-auto max-w-2xl px-6 pt-20 pb-20 sm:pt-24">
+    <h1 class="text-4xl font-semibold sm:text-5xl">Start a conversation</h1>
+    <p class="mt-5 text-lg text-muted">
+      A line or two on what you're working on is plenty. Innovation Ways is selectively
+      available for engagements where owning the architecture of a production AI or BSS
+      system is the point.
+    </p>
+
+    <div
+      class="mt-10 rounded-2xl border border-line border-t-[3px] border-t-accent bg-surface p-6 shadow-sm sm:p-8"
+    >
+    <form
+      id="contact-form"
+      action="https://api.web3forms.com/submit"
+      method="POST"
+      class="space-y-5"
+    >
+      <input type="hidden" name="access_key" value={WEB3FORMS_ACCESS_KEY} />
+      <input
+        type="hidden"
+        name="subject"
+        value="New inquiry from innovation-ways.com"
+      />
+      <!-- Honeypot (spam protection) -->
+      <input type="checkbox" name="botcheck" class="hidden" style="display:none" tabindex="-1" autocomplete="off" />
+
+      <div>
+        <label for="name" class="block text-sm font-medium text-ink">Name</label>
+        <input
+          id="name"
+          name="name"
+          type="text"
+          required
+          class="mt-2 w-full rounded-lg border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-accent"
+        />
+      </div>
+      <div>
+        <label for="email" class="block text-sm font-medium text-ink">Email</label>
+        <input
+          id="email"
+          name="email"
+          type="email"
+          required
+          class="mt-2 w-full rounded-lg border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-accent"
+        />
+      </div>
+      <div>
+        <label for="message" class="block text-sm font-medium text-ink">
+          What are you working on?
+        </label>
+        <textarea
+          id="message"
+          name="message"
+          rows="5"
+          required
+          class="mt-2 w-full rounded-lg border border-line bg-paper px-4 py-3 text-ink outline-none focus:border-accent"
+        ></textarea>
+      </div>
+      <button
+        type="submit"
+        data-submit
+        class="rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-strong disabled:cursor-not-allowed disabled:opacity-60"
+      >
+        Send
+      </button>
+      <p id="form-error" hidden class="text-sm text-red-600" role="alert"></p>
+    </form>
+    </div>
+
+    <!-- Inline success state (shown after a successful submit; replaces the form) -->
+    <div id="form-success" hidden class="mt-10 rounded-2xl border border-line border-t-[3px] border-t-accent bg-surface px-6 py-8 shadow-sm">
+      <p class="flex items-center gap-2 text-lg font-semibold text-ink">
+        <span class="text-accent" aria-hidden="true">✓</span> Message sent
+      </p>
+      <p class="mt-2 text-muted">
+        Thanks — Innovation Ways will be in touch shortly.
+      </p>
+      <a
+        href="/"
+        class="mt-6 inline-block rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
+        >Back to home</a
+      >
+    </div>
+
+    <p class="mt-8 text-sm text-muted">
+      Prefer GitHub? The open-source work is at
+      <a
+        href="https://github.com/innovation-ways"
+        rel="noopener"
+        class="text-accent-strong hover:underline">github.com/innovation-ways</a
+      >.
+    </p>
+  </section>
+
+  <script>
+    const form = document.getElementById("contact-form") as HTMLFormElement | null;
+    const success = document.getElementById("form-success");
+    const errorEl = document.getElementById("form-error");
+
+    form?.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      const button = form.querySelector("[data-submit]") as HTMLButtonElement | null;
+
+      if (errorEl) errorEl.hidden = true;
+      if (button) {
+        button.disabled = true;
+        button.textContent = "Sending…";
+      }
+
+      try {
+        const response = await fetch(form.action, {
+          method: "POST",
+          headers: { Accept: "application/json" },
+          body: new FormData(form),
+        });
+        const data = await response.json();
+
+        if (response.ok && data.success) {
+          form.hidden = true;
+          if (success) {
+            success.hidden = false;
+            success.scrollIntoView({ behavior: "smooth", block: "center" });
+          }
+          return;
+        }
+        throw new Error(data.message || "Submission failed.");
+      } catch (err) {
+        if (errorEl) {
+          errorEl.textContent =
+            "Something went wrong sending your message. Please try again, or email us directly.";
+          errorEl.hidden = false;
+        }
+        if (button) {
+          button.disabled = false;
+          button.textContent = "Send";
+        }
+      }
+    });
+  </script>
+</Base>

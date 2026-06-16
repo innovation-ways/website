@@ -1,0 +1,53 @@
+---
+import { existsSync } from "node:fs";
+// Soft availability — informative, not a sales pitch (docs/website_planning.md §5).
+//
+// Graceful photographic close: drop a calm Lisbon shot at /public/atmos/lisbon.jpg
+// ("remote from Lisbon") and the CTA becomes a full-bleed branded band; until then
+// it stays the clean, theme-aware version. Same copy either way.
+const bg = "/atmos/lisbon.jpg";
+const hasBg = existsSync(`public${bg}`);
+---
+
+{
+  hasBg ? (
+    <section class="iw-photo iw-photo--mono relative border-t border-line">
+      <img src={bg} alt="" loading="lazy" class="absolute inset-0 h-full w-full object-cover" />
+      <span class="iw-tint" />
+      <span class="iw-scrim" />
+      <div class="relative mx-auto max-w-6xl px-6 py-20 text-center sm:py-28">
+        <h2 class="mx-auto max-w-2xl text-3xl font-semibold text-white sm:text-4xl">
+          Building something that has to be right?
+        </h2>
+        <p class="mx-auto mt-4 max-w-xl text-white/85">
+          Selectively available for engagements where owning the architecture of a
+          production AI or BSS system is the point.
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-block rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
+        >
+          Start a conversation
+        </a>
+      </div>
+    </section>
+  ) : (
+    <section class="border-t border-line">
+      <div class="mx-auto max-w-6xl px-6 py-16 text-center sm:py-24">
+        <h2 class="mx-auto max-w-2xl text-3xl font-semibold sm:text-4xl">
+          Building something that has to be right?
+        </h2>
+        <p class="mx-auto mt-4 max-w-xl text-muted">
+          Selectively available for engagements where owning the architecture of a
+          production AI or BSS system is the point.
+        </p>
+        <a
+          href="/contact"
+          class="mt-8 inline-block rounded-lg bg-accent px-6 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
+        >
+          Start a conversation
+        </a>
+      </div>
+    </section>
+  )
+}

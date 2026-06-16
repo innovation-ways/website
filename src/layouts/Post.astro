@@ -1,0 +1,32 @@
+---
+import Base from "./Base.astro";
+import CoverArt from "../components/CoverArt.astro";
+import type { CollectionEntry } from "astro:content";
+
+interface Props {
+  post: CollectionEntry<"insights">;
+}
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate } = post.data;
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
+---
+
+<Base path={`/insights/${post.id}`} title={`${title} — Innovation Ways`} description={description}>
+  <article class="mx-auto max-w-2xl px-6 pt-16 pb-16 sm:pt-20">
+    <a href="/insights" class="text-sm text-muted hover:text-ink">← Insights</a>
+    <h1 class="mt-6 text-3xl font-semibold sm:text-[2.5rem] sm:leading-tight">{title}</h1>
+    <p class="mt-4 text-sm text-muted">
+      <time datetime={pubDate.toISOString()}>{fmt(pubDate)}</time>
+      {updatedDate && <span> · updated {fmt(updatedDate)}</span>}
+    </p>
+
+    <div class="mt-8 h-32 overflow-hidden rounded-xl border border-line sm:h-40">
+      <CoverArt seed={post.id} variant="banner" class="h-full w-full" />
+    </div>
+
+    <div class="prose mt-10">
+      <slot />
+    </div>
+  </article>
+</Base>

@@ -1,0 +1,26 @@
+---
+import { getCollection } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import InsightsList from "../../components/InsightsList.astro";
+import FooterCta from "../../components/FooterCta.astro";
+
+const posts = (await getCollection("insights"))
+  .filter((p) => !p.data.draft)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<Base
+  path="/insights"
+  title="Insights — Innovation Ways"
+  description="Writing on AI orchestration, retrieval, evaluation, and production systems from Innovation Ways."
+>
+  <section class="mx-auto max-w-6xl px-6 pt-20 pb-2 sm:pt-24">
+    <h1 class="text-4xl font-semibold sm:text-5xl">Insights</h1>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      Notes on AI orchestration, retrieval, evaluation, and what it takes to run
+      systems in production.
+    </p>
+  </section>
+  <InsightsList posts={posts} withHeading={false} />
+  <FooterCta />
+</Base>

@@ -1,0 +1,388 @@
+---
+import { existsSync } from "node:fs";
+import map from "../data/europe-map.json";
+import { engagements, type Engagement } from "../data/experience.ts";
+
+// Founder experience map — a stylized Europe→Türkiye silhouette with a pin per
+// engagement, placed at the company's home city. Click a pin (or a card) to open
+// a popup with the role detail. Map geometry is generated, see
+// scripts/generate-europe-map.mjs.
+
+// Assets degrade gracefully: if a real logo/photo hasn't been dropped in yet we
+// render a wordmark / placeholder instead of a broken image.
+const has = (publicPath: string) => existsSync(`public${publicPath}`);
+
+const cityById = new Map(map.cities.map((c) => [c.key, c]));
+
+// Build pin positions. When a city hosts more than one engagement (Lisbon), fan
+// the pins horizontally so both stay clickable. Offsets are in viewBox units and
+// converted to % so they scale with the responsive SVG.
+const SPREAD = 30; // viewBox units between fanned pins
+const groups = new Map<string, Engagement[]>();
+for (const e of engagements) {
+  groups.set(e.cityKey, [...(groups.get(e.cityKey) ?? []), e]);
+}
+const pins = engagements.map((e) => {
+  const city = cityById.get(e.cityKey)!;
+  const group = groups.get(e.cityKey)!;
+  const idx = group.indexOf(e);
+  const dx = (idx - (group.length - 1) / 2) * SPREAD;
+  return {
+    e,
+    leftPct: ((city.x + dx) / map.width) * 100,
+    topPct: (city.y / map.height) * 100,
+  };
+});
+---
+
+<section id="experience" class="border-t border-line bg-paper">
+  <!-- max-w-3xl matches the /about text column (About + Founder) so the heading
+       and intro align with the rest of the page. ExperienceMap is used only on
+       /about, so this is safe. -->
+  <div class="mx-auto max-w-3xl px-6 py-16 sm:py-20">
+    <h2 class="text-2xl font-semibold sm:text-3xl">Two decades across Europe</h2>
+    <p class="mt-4 max-w-2xl text-muted">
+      The domain depth behind Innovation Ways is hands-on and earned in production
+      — twenty years of telecom billing, securities settlement, and insurance
+      documentation for operators and institutions across Europe. A look at where
+      the founder built it.
+    </p>
+
+    <!-- Map (decorative + interactive on larger screens) -->
+    <div class="reveal mt-12 hidden md:block">
+      <div class="relative mx-auto w-full max-w-4xl">
+        <svg
+          viewBox={map.viewBox}
+          class="iw-map h-auto w-full"
+          role="img"
+          aria-label="Map of Europe marking the cities where the founder's past employers are based"
+        >
+          <path class="iw-map-land" d={map.land}></path>
+          <path class="iw-map-borders" d={map.borders}></path>
+        </svg>
+
+        <!-- Pins overlaid on the map -->
+        <div class="absolute inset-0">
+          {
+            pins.map(({ e, leftPct, topPct }) => (
+              <button
+                type="button"
+                class="iw-pin group"
+                data-target={`eng-${e.id}`}
+                style={`left:${leftPct}%;top:${topPct}%`}
+                aria-label={`${e.company} — ${e.city}, ${e.dateRange}`}
+              >
+                <span class="iw-pin-chip">
+                  {has(e.logo) ? (
+                    <img src={e.logo} alt="" class="iw-pin-logo" loading="lazy" />
+                  ) : (
+                    <span class="iw-pin-mark">{e.company.slice(0, 2)}</span>
+                  )}
+                </span>
+                <span class="iw-pin-dot" />
+                <span class="iw-pin-tip">
+                  {e.company} · {e.city.split(",")[0]}
+                </span>
+              </button>
+            ))
+          }
+        </div>
+      </div>
+    </div>
+
+    <!-- Company index — mobile-only entry point (map is hidden below md, so this
+         is how phones open the popups). Hidden on desktop to avoid redundancy. -->
+    <ul class="mt-12 grid gap-3 sm:grid-cols-2 md:hidden">
+      {
+        engagements.map((e) => (
+          <li>
+            <button
+              type="button"
+              class="iw-card reveal flex w-full items-center gap-4 rounded-xl border border-line bg-surface p-4 text-left transition hover:border-accent"
+              data-target={`eng-${e.id}`}
+            >
+              <span class="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg border border-line bg-paper">
+                {has(e.logo) ? (
+                  <img src={e.logo} alt="" class="max-h-7 max-w-9 object-contain" loading="lazy" />
+                ) : (
+                  <span class="font-display text-xs font-semibold text-muted">
+                    {e.company.slice(0, 3)}
+                  </span>
+                )}
+              </span>
+              <span class="min-w-0">
+                <span class="block font-display font-medium text-ink">{e.company}</span>
+                <span class="block truncate text-sm text-muted">
+                  {e.city.split(",")[0]} · {e.dateRange}
+                </span>
+              </span>
+            </button>
+          </li>
+        ))
+      }
+    </ul>
+
+    <!-- Popups -->
+    {
+      engagements.map((e) => (
+        <dialog id={`eng-${e.id}`} class="iw-dialog" aria-labelledby={`eng-${e.id}-title`}>
+          <div class="iw-dialog-inner">
+            <button type="button" class="iw-dialog-close" data-close aria-label="Close">
+              <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M6 6l12 12M18 6L6 18" />
+              </svg>
+            </button>
+
+            <div class="flex items-center gap-4">
+              <span class="flex h-14 w-14 shrink-0 items-center justify-center rounded-xl border border-line bg-paper">
+                {has(e.logo) ? (
+                  <img src={e.logo} alt={`${e.company} logo`} class="max-h-9 max-w-11 object-contain" />
+                ) : (
+                  <span class="font-display text-sm font-semibold text-muted">
+                    {e.company.slice(0, 3)}
+                  </span>
+                )}
+              </span>
+              <div>
+                <h3 id={`eng-${e.id}-title`} class="font-display text-xl font-semibold text-ink">
+                  {e.company}
+                </h3>
+                <p class="text-sm text-accent-strong">{e.sector}</p>
+              </div>
+            </div>
+
+            <div class="iw-dialog-photo iw-photo iw-photo--mono iw-photo--bloom mt-5">
+              {has(e.photo) ? (
+                <>
+                  <img src={e.photo} alt={`${e.company} — ${e.city.split(",")[0]}`} class="h-full w-full object-cover" />
+                  <span class="iw-tint" />
+                </>
+              ) : (
+                <div class="flex h-full w-full flex-col items-center justify-center gap-2 text-muted">
+                  <svg viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.5">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <circle cx="8.5" cy="10" r="1.5" />
+                    <path d="M21 16l-5-5L5 21" />
+                  </svg>
+                  <span class="text-xs">Workplace photo — to be added</span>
+                </div>
+              )}
+            </div>
+
+            <p class="mt-4 text-sm font-medium text-ink">{e.title}</p>
+            <p class="text-sm text-muted">
+              {e.city} · {e.dateRange}
+            </p>
+            <p class="mt-3 text-muted">{e.description}</p>
+          </div>
+        </dialog>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  /* Map silhouette — theme-aware via tokens, crisp strokes at any scale.
+     Clip to the viewBox so partially-offscreen countries don't spill out. */
+  .iw-map {
+    overflow: hidden;
+  }
+  .iw-map-land {
+    fill: var(--color-surface);
+    stroke: var(--color-line);
+    stroke-width: 1.25;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+  }
+  .iw-map-borders {
+    fill: none;
+    stroke: var(--color-line);
+    stroke-width: 0.75;
+    vector-effect: non-scaling-stroke;
+    opacity: 0.7;
+  }
+
+  /* Pins */
+  .iw-pin {
+    position: absolute;
+    transform: translate(-50%, -100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+    z-index: 1;
+  }
+  .iw-pin:hover,
+  .iw-pin:focus-visible {
+    z-index: 3;
+  }
+  .iw-pin-chip {
+    display: flex;
+    height: 2.5rem;
+    width: 2.5rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    border: 1px solid var(--color-line);
+    background: var(--color-paper);
+    box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+    transition: transform 0.15s ease, border-color 0.15s ease;
+  }
+  .iw-pin:hover .iw-pin-chip,
+  .iw-pin:focus-visible .iw-pin-chip {
+    transform: translateY(-2px) scale(1.08);
+    border-color: var(--color-accent);
+  }
+  .iw-pin-logo {
+    max-height: 1.4rem;
+    max-width: 1.8rem;
+    object-fit: contain;
+  }
+  .iw-pin-mark {
+    font-family: var(--font-display);
+    font-size: 0.7rem;
+    font-weight: 600;
+    color: var(--color-muted);
+  }
+  /* The exact geographic point */
+  .iw-pin-dot {
+    margin-top: 1px;
+    height: 7px;
+    width: 7px;
+    border-radius: 9999px;
+    background: var(--color-accent);
+    box-shadow: 0 0 0 3px color-mix(in oklch, var(--color-accent) 25%, transparent);
+  }
+  .iw-pin-tip {
+    position: absolute;
+    bottom: calc(100% + 6px);
+    white-space: nowrap;
+    border-radius: 0.4rem;
+    background: var(--color-ink);
+    color: var(--color-paper);
+    padding: 0.25rem 0.5rem;
+    font-size: 0.7rem;
+    font-weight: 500;
+    opacity: 0;
+    transform: translateY(4px);
+    transition: opacity 0.15s ease, transform 0.15s ease;
+    pointer-events: none;
+  }
+  .iw-pin:hover .iw-pin-tip,
+  .iw-pin:focus-visible .iw-pin-tip {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Dialog — centered in the viewport. `margin:auto` + `inset:0` + fit-content
+     height is what the browser uses to centre a modal; Tailwind's preflight
+     zeroes the margin, so we re-assert it here. */
+  .iw-dialog {
+    position: fixed;
+    inset: 0;
+    margin: auto;
+    width: min(34rem, calc(100vw - 2rem));
+    height: fit-content;
+    max-height: calc(100dvh - 2rem);
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+    background: var(--color-paper);
+    color: var(--color-ink);
+    padding: 0;
+    box-shadow: 0 24px 60px rgb(0 0 0 / 0.25);
+    overflow: auto;
+    /* Pop-out (closing) state */
+    opacity: 0;
+    transform: scale(0.94);
+    transition:
+      opacity 0.18s ease,
+      transform 0.18s ease,
+      overlay 0.18s ease allow-discrete,
+      display 0.18s ease allow-discrete;
+  }
+  /* Pop-in (open) state */
+  .iw-dialog[open] {
+    opacity: 1;
+    transform: scale(1);
+  }
+  /* Entry origin — animates in the first frame it's shown */
+  @starting-style {
+    .iw-dialog[open] {
+      opacity: 0;
+      transform: scale(0.94);
+    }
+  }
+  .iw-dialog::backdrop {
+    background: rgb(0 0 0 / 0.5);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    transition:
+      opacity 0.18s ease,
+      overlay 0.18s ease allow-discrete,
+      display 0.18s ease allow-discrete;
+  }
+  .iw-dialog[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    .iw-dialog[open]::backdrop {
+      opacity: 0;
+    }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .iw-dialog,
+    .iw-dialog::backdrop {
+      transition: none;
+    }
+  }
+  .iw-dialog-inner {
+    position: relative;
+    padding: 1.5rem;
+  }
+  .iw-dialog-close {
+    position: absolute;
+    top: 0.9rem;
+    right: 0.9rem;
+    display: flex;
+    height: 2rem;
+    width: 2rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    color: var(--color-muted);
+    transition: background 0.15s ease, color 0.15s ease;
+  }
+  .iw-dialog-close:hover {
+    background: var(--color-surface);
+    color: var(--color-ink);
+  }
+  .iw-dialog-photo {
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-line);
+    background: var(--color-surface);
+  }
+</style>
+
+<script>
+  // Open a popup from any pin or card; native <dialog> handles Esc + focus trap.
+  const open = (id: string | null) => {
+    if (!id) return;
+    const dlg = document.getElementById(id) as HTMLDialogElement | null;
+    dlg?.showModal();
+  };
+
+  document.querySelectorAll<HTMLElement>(".iw-pin, .iw-card").forEach((el) => {
+    el.addEventListener("click", () => open(el.dataset.target ?? null));
+  });
+
+  document.querySelectorAll<HTMLDialogElement>(".iw-dialog").forEach((dlg) => {
+    // Close button
+    dlg.querySelector("[data-close]")?.addEventListener("click", () => dlg.close());
+    // Click on the backdrop (outside the inner card) closes
+    dlg.addEventListener("click", (ev) => {
+      if (ev.target === dlg) dlg.close();
+    });
+  });
+</script>

@@ -1,0 +1,45 @@
+---
+import Logo from "./Logo.astro";
+const year = 2026;
+---
+
+<footer class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-12">
+    <div class="flex flex-col gap-8 sm:flex-row sm:items-start sm:justify-between">
+      <div class="max-w-sm">
+        <Logo size={24} class="text-base" />
+        <p class="mt-2 text-sm text-muted">
+          Telecom BSS engineering, now building production AI in the open.
+          Lisbon, Portugal · remote.
+        </p>
+      </div>
+
+      <nav class="flex gap-12 text-sm" aria-label="Footer">
+        <ul class="space-y-2">
+          <li><a href="/work" class="text-muted hover:text-ink">Work</a></li>
+          <li><a href="/insights" class="text-muted hover:text-ink">Insights</a></li>
+          <li><a href="/about" class="text-muted hover:text-ink">About</a></li>
+          <li><a href="/contact" class="text-muted hover:text-ink">Contact</a></li>
+        </ul>
+        <ul class="space-y-2">
+          <li>
+            <a
+              href="https://github.com/innovation-ways"
+              rel="noopener"
+              class="text-muted hover:text-ink"
+            >
+              GitHub
+            </a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+
+    <div
+      class="mt-10 flex flex-col gap-2 border-t border-line pt-6 text-xs text-muted sm:flex-row sm:items-center sm:justify-between"
+    >
+      <p>© {year} Innovation Ways. All rights reserved.</p>
+      <p>Operating as Innovation Ways for contracting purposes.</p>
+    </div>
+  </div>
+</footer>

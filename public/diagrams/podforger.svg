@@ -1,0 +1,156 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 900 340"
+     width="900"
+     height="340"
+     style="width:100%;height:auto"
+     role="img"
+     aria-labelledby="pod-title pod-desc">
+
+  <title id="pod-title">PodForger: Feed-to-Audio Pipeline</title>
+  <desc id="pod-desc">An eight-stage pipeline: RSS feed input, extract full article, classify topic, run topic and web research, generate a multi-speaker script, GPU TTS with 8 engines, assemble audio, and publish back as RSS. The GPU TTS stage is highlighted as the key differentiating component.</desc>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+  </defs>
+
+  <!--
+    ROW 1 (y-centre 90): RSS feed → Extract → Classify → Topic research
+    ROW 2 (y-centre 225): Multi-speaker script ← GPU TTS ← Assemble ← Publish RSS
+    Wrap: step 4 bottom-right → step 5 (right-to-left in row 2)
+
+    Box width ~145, gap ~12
+    Row 1 centres: 72, 237, 387, 567  (widths: 110, 130, 100, 160)
+    Row 2 enters from top-right, flows left:
+    Step 8 Publish (rightmost): cx=795
+    Step 7 Assemble:            cx=635
+    Step 6 GPU TTS (TEAL):      cx=455
+    Step 5 Multi-speaker script: cx=265
+  -->
+
+  <!-- ═══ ROW 1 ═══ -->
+
+  <!-- 1. RSS feed  x=20 w=110 -->
+  <rect x="20" y="52" width="110" height="76" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="75" y="86" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#1f2933">RSS feed</text>
+  <text x="75" y="104" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">source input</text>
+
+  <!-- → -->
+  <line x1="130" y1="90" x2="158" y2="90"
+        stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 2. Extract full article  x=160 w=140 -->
+  <rect x="160" y="52" width="140" height="76" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="230" y="83" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#1f2933">Extract</text>
+  <text x="230" y="101" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">full article text</text>
+
+  <!-- → -->
+  <line x1="300" y1="90" x2="328" y2="90"
+        stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 3. Classify  x=330 w=120 -->
+  <rect x="330" y="52" width="120" height="76" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="390" y="83" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#1f2933">Classify</text>
+  <text x="390" y="101" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">topic · category</text>
+
+  <!-- → -->
+  <line x1="450" y1="90" x2="478" y2="90"
+        stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 4. Topic + web research  x=480 w=185 -->
+  <rect x="480" y="52" width="185" height="76" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="572" y="83" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#1f2933">Research</text>
+  <text x="572" y="101" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">topic + web search</text>
+
+  <!-- Wrap connector: step 4 right (665,90) → right elbow → row 2 step 8 top -->
+  <!-- Step 8 (Publish) rightmost in row 2: x=730 w=150 cy=225, top=187 -->
+  <polyline points="665,90 710,90 710,187 742,187"
+            fill="none" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ ROW 2 (y-centre 225, box top=187 h=76) flows RIGHT-TO-LEFT ═══ -->
+
+  <!-- 8. Publish (RSS)  x=744 w=140 -->
+  <rect x="744" y="187" width="140" height="76" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="814" y="218" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#1f2933">Publish</text>
+  <text x="814" y="236" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">RSS output</text>
+
+  <!-- ← arrow -->
+  <line x1="744" y1="225" x2="716" y2="225"
+        stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 7. Assemble audio  x=568 w=136 -->
+  <rect x="568" y="187" width="136" height="76" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="636" y="218" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#1f2933">Assemble</text>
+  <text x="636" y="236" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">final audio file</text>
+
+  <!-- ← arrow -->
+  <line x1="568" y1="225" x2="540" y2="225"
+        stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 6. GPU TTS — 8 engines (TEAL)  x=358 w=170 -->
+  <rect x="358" y="187" width="170" height="76" rx="10"
+        fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+  <text x="443" y="215" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#0d9488">GPU TTS</text>
+  <text x="443" y="233" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#0f766e">8 synthesis engines</text>
+  <text x="443" y="249" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#0f766e">multi-voice rendering</text>
+
+  <!-- ← arrow -->
+  <line x1="358" y1="225" x2="330" y2="225"
+        stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- 5. Multi-speaker script  x=120 w=198 -->
+  <rect x="120" y="187" width="198" height="76" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="219" y="215" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#1f2933">Script</text>
+  <text x="219" y="233" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">multi-speaker dialogue</text>
+  <text x="219" y="249" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#64748b">LLM-generated</text>
+
+  <!-- ═══ FOOTER ═══ -->
+  <text x="450" y="308" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#94a3b8">Fully automated end-to-end · from any RSS feed to a listenable podcast episode</text>
+
+</svg>

@@ -1,0 +1,144 @@
+---
+interface Props {
+  path?: string;
+}
+const { path = "/" } = Astro.props;
+
+import Logo from "./Logo.astro";
+
+const links = [
+  { href: "/work", label: "Work" },
+  { href: "/insights", label: "Insights" },
+  { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+];
+
+const isActive = (href: string) =>
+  href === "/" ? path === "/" : path.startsWith(href);
+---
+
+<header
+  id="site-header"
+  class="sticky top-0 z-50 border-b border-transparent bg-paper/30 backdrop-blur-md transition-[background-color,border-color,box-shadow] duration-300 data-[scrolled]:border-line data-[scrolled]:bg-paper/80 data-[scrolled]:shadow-sm data-[scrolled]:backdrop-blur-lg"
+>
+  <nav
+    class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5"
+    aria-label="Primary"
+  >
+    <a
+      href="/"
+      class="rounded-sm text-xl text-ink focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent"
+      aria-label="Innovation Ways — home"
+    >
+      <Logo size={34} />
+    </a>
+
+    <div class="flex items-center gap-3 md:gap-6">
+      <!-- Desktop links -->
+      <ul class="hidden items-center gap-10 text-lg md:flex">
+        {
+          links.map((l) => (
+            <li>
+              <a
+                href={l.href}
+                class:list={[
+                  "font-medium transition-colors hover:text-ink",
+                  isActive(l.href) ? "text-ink" : "text-muted",
+                ]}
+              >
+                {l.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+
+      <!-- Theme toggle -->
+      <button
+        id="theme-toggle"
+        type="button"
+        aria-label="Toggle dark mode"
+        class="inline-flex h-9 w-9 items-center justify-center rounded-lg text-muted transition-colors hover:bg-surface hover:text-ink"
+      >
+        <svg
+          class="theme-icon-light h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9z"></path>
+        </svg>
+        <svg
+          class="theme-icon-dark h-5 w-5"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <circle cx="12" cy="12" r="4"></circle>
+          <path
+            d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"
+          ></path>
+        </svg>
+      </button>
+
+      <!-- Mobile disclosure (zero-JS) -->
+      <details class="relative md:hidden">
+        <summary
+          class="flex cursor-pointer list-none items-center gap-2 text-sm text-muted [&::-webkit-details-marker]:hidden"
+        >
+          Menu
+        </summary>
+        <ul
+          class="absolute right-0 mt-3 w-44 rounded-lg border border-line bg-paper p-2 text-sm shadow-sm"
+        >
+          {
+            links.map((l) => (
+              <li>
+                <a
+                  href={l.href}
+                  class="block rounded-md px-3 py-2 text-muted hover:bg-surface hover:text-ink"
+                >
+                  {l.label}
+                </a>
+              </li>
+            ))
+          }
+        </ul>
+      </details>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Scroll-aware chrome: transparent at the top, solidifies (bg + hairline + blur)
+  // once the page scrolls — toggled via the `data-scrolled` attribute.
+  const header = document.getElementById("site-header");
+  if (header) {
+    const onScroll = () => {
+      if (window.scrollY > 8) header.setAttribute("data-scrolled", "");
+      else header.removeAttribute("data-scrolled");
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+  }
+
+  const btn = document.getElementById("theme-toggle");
+  btn?.addEventListener("click", () => {
+    const html = document.documentElement;
+    const sysDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const current = html.dataset.theme || (sysDark ? "dark" : "light");
+    const next = current === "dark" ? "light" : "dark";
+    html.dataset.theme = next;
+    try {
+      localStorage.setItem("theme", next);
+    } catch (e) {}
+  });
+</script>

@@ -1,0 +1,70 @@
+---
+import { getCollection, render } from "astro:content";
+import Base from "../../layouts/Base.astro";
+import FooterCta from "../../components/FooterCta.astro";
+
+export async function getStaticPaths() {
+  const entries = await getCollection("work");
+  return entries
+    .filter((e) => !e.data.draft)
+    .map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { name, tagline, tags, status, diagram } = entry.data;
+---
+
+<Base
+  path={`/work/${entry.id}`}
+  title={`${name} — Innovation Ways`}
+  description={tagline}
+>
+  <article class="mx-auto max-w-3xl px-6 pt-20 pb-8 sm:pt-24">
+    <a href="/work" class="text-sm text-muted hover:text-ink">← Work</a>
+    <h1 class="mt-6 text-4xl font-semibold sm:text-5xl">{name}</h1>
+    <p class="mt-5 text-lg text-muted">{tagline}</p>
+
+    <ul class="mt-6 flex flex-wrap gap-2">
+      {
+        tags.map((t) => (
+          <li class="rounded-md border border-line px-2.5 py-1 text-xs text-muted">
+            {t}
+          </li>
+        ))
+      }
+    </ul>
+
+    {
+      diagram && (
+        <img
+          src={diagram}
+          alt={`${name} — architecture diagram`}
+          loading="lazy"
+          class="mt-10 w-full rounded-xl bg-white p-5 ring-1 ring-black/5"
+        />
+      )
+    }
+
+    <div class="prose mt-10 border-t border-line pt-8">
+      <Content />
+    </div>
+
+    {
+      status === "oss" && (
+        <p class="mt-10 border-t border-line pt-6 text-sm text-muted">
+          Open source under the{" "}
+          <a
+            href="https://github.com/innovation-ways"
+            rel="noopener"
+            class="text-accent-strong hover:underline"
+          >
+            Innovation Ways GitHub org
+          </a>
+          .
+        </p>
+      )
+    }
+  </article>
+  <FooterCta />
+</Base>

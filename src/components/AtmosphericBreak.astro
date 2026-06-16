@@ -1,0 +1,58 @@
+---
+import { existsSync } from "node:fs";
+
+// Full-bleed atmospheric photo band — a branded image break between text-heavy
+// sections. Source images are plain colour (real or AI-generated); the shared
+// .iw-photo treatment desaturates + teal-washes them into the brand, and the
+// .iw-scrim keeps any overlaid text legible.
+//
+// Graceful by design: renders NOTHING until the image exists at /public<src>,
+// so the page never shows an empty band before the asset is dropped in.
+interface Props {
+  src: string; // e.g. "/atmos/work.jpg"
+  alt: string;
+  eyebrow?: string;
+  heading?: string;
+  lead?: string;
+  /** Tailwind height classes for the band */
+  height?: string;
+}
+const {
+  src,
+  alt,
+  eyebrow,
+  heading,
+  lead,
+  height = "h-72 sm:h-[26rem]",
+} = Astro.props;
+
+const show = existsSync(`public${src}`);
+const hasText = Boolean(eyebrow || heading || lead);
+---
+
+{
+  show && (
+    <section class={`iw-photo iw-photo--mono relative w-full ${height}`}>
+      <img src={src} alt={alt} loading="lazy" />
+      <span class="iw-tint" />
+      {hasText && <span class="iw-scrim" />}
+      {hasText && (
+        <div class="absolute inset-0 flex items-end">
+          <div class="mx-auto w-full max-w-6xl px-6 pb-10">
+            {eyebrow && (
+              <p class="text-xs font-medium uppercase tracking-wider text-white/80">
+                {eyebrow}
+              </p>
+            )}
+            {heading && (
+              <h2 class="mt-2 max-w-2xl font-display text-2xl font-semibold text-white sm:text-3xl">
+                {heading}
+              </h2>
+            )}
+            {lead && <p class="mt-3 max-w-xl text-white/85">{lead}</p>}
+          </div>
+        </div>
+      )}
+    </section>
+  )
+}

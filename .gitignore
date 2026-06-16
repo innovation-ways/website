@@ -1,6 +1,27 @@
+# Ignore IW AI CORE files
+.claude/
+.opencode/
+.pi/
+ai-dev/
+.iw-orch.json
+.iw-skills-lock.json
+CLAUDE.md   
+docs/
+.playwright-cli/
 
 # .v4p backup files
 *~.xml
 
 # Dynamic plugins .dll
 bin/
+
+# Astro / Node build artifacts
+node_modules/
+dist/
+.astro/
+.env
+.env.production
+npm-debug.log*
+.DS_Store
+
+.vscode/

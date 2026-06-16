@@ -1,0 +1,56 @@
+---
+import type { CollectionEntry } from "astro:content";
+import CoverArt from "./CoverArt.astro";
+
+interface Props {
+  posts: CollectionEntry<"insights">[];
+  withHeading?: boolean;
+}
+const { posts, withHeading = true } = Astro.props;
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
+---
+
+<section class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    {withHeading && <h2 class="text-2xl font-semibold sm:text-3xl">Insights</h2>}
+
+    {
+      posts.length === 0 ? (
+        <p class="mt-6 text-muted">
+          Writing on AI orchestration, retrieval, and production systems — coming soon.
+        </p>
+      ) : (
+        <ul class="mt-10 grid gap-px overflow-hidden rounded-xl border border-line bg-line">
+          {posts.map((post) => (
+            <li class="bg-paper">
+              <a
+                href={`/insights/${post.id}`}
+                class="group flex flex-col gap-4 p-5 transition-colors hover:bg-surface sm:flex-row sm:items-center sm:gap-6"
+              >
+                <div class="aspect-[16/9] w-full shrink-0 overflow-hidden rounded-lg border border-line sm:aspect-[4/3] sm:w-40">
+                  <CoverArt seed={post.id} variant="thumb" class="h-full w-full" />
+                </div>
+                <div class="min-w-0 flex-1">
+                  <h3 class="font-display text-lg font-medium text-ink group-hover:text-accent-strong">
+                    {post.data.title}
+                  </h3>
+                  <p class="mt-1 line-clamp-2 text-sm text-muted">
+                    {post.data.description}
+                  </p>
+                  <time
+                    datetime={post.data.pubDate.toISOString()}
+                    class="mt-2 block text-xs text-muted"
+                  >
+                    {fmt(post.data.pubDate)}
+                  </time>
+                </div>
+              </a>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </div>
+</section>

@@ -1,0 +1,62 @@
+---
+import { existsSync } from "node:fs";
+import Monogram from "./Monogram.astro";
+// Founder section — Agathon-style. Named, work-backed. The deeper experience
+// showcase (Europe map + roles) lives on /about via ExperienceMap.astro.
+//
+// Portrait degrades gracefully: drop a real headshot at /public/founder/sergio.jpg
+// (see that folder's README) and it replaces the monogram automatically.
+const portrait = "/founder/sergio.jpg";
+const hasPortrait = existsSync(`public${portrait}`);
+---
+
+<section class="border-t border-line bg-surface">
+  <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    <h2 class="text-2xl font-semibold sm:text-3xl">Founder</h2>
+    <div class="mt-8 grid items-start gap-8 sm:gap-10 md:grid-cols-12">
+      <!-- Portrait -->
+      <div class="md:col-span-4">
+        {
+          hasPortrait ? (
+            <div class="iw-photo mx-auto aspect-[4/5] w-44 rounded-2xl border border-line shadow-sm sm:w-full sm:max-w-xs">
+              <img
+                src={portrait}
+                alt="Sérgio Gaspar, founder of Innovation Ways"
+                width="640"
+                height="800"
+                loading="lazy"
+              />
+            </div>
+          ) : (
+            <Monogram class="mx-auto h-28 w-28 text-3xl sm:mx-0" />
+          )
+        }
+      </div>
+
+      <!-- Bio -->
+      <div class="max-w-2xl md:col-span-8">
+        <p class="font-display text-xl font-medium text-ink">
+          Sérgio Gaspar — Founder &amp; Principal Engineer
+        </p>
+        <p class="mt-4 text-muted">
+          Twenty years designing, building, and owning critical back-office systems
+          end-to-end — telecom billing, securities settlement, insurance documentation.
+          Sole developer of a Swiss operator's invoicing system that produces millions of
+          invoices a month, with zero major production incidents across successive platform
+          upgrades.
+        </p>
+        <p class="mt-4 text-muted">
+          Innovation Ways is where that production discipline now meets applied AI —
+          building orchestration, retrieval, and evaluation infrastructure in the open.
+          Fully remote from Lisbon.
+        </p>
+        <a
+          href="/about"
+          class="mt-6 inline-block text-sm font-medium text-accent-strong hover:underline"
+        >
+          More about Innovation Ways →
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

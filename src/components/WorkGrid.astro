@@ -1,0 +1,42 @@
+---
+import { getCollection } from "astro:content";
+import ProjectCard from "./ProjectCard.astro";
+
+interface Props {
+  /** When true, show the section heading + intro (homepage). */
+  withHeading?: boolean;
+}
+const { withHeading = true } = Astro.props;
+
+const entries = (await getCollection("work"))
+  .filter((e) => !e.data.draft)
+  .sort((a, b) => a.data.order - b.data.order);
+---
+
+<section class="border-t border-line">
+  <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    {
+      withHeading && (
+        <div class="flex items-end justify-between gap-6">
+          <div>
+            <h2 class="text-2xl font-semibold sm:text-3xl">Work</h2>
+            <p class="mt-3 max-w-2xl text-muted">
+              Real systems, described as engineering — not marketing.
+            </p>
+          </div>
+          <a
+            href="https://github.com/innovation-ways"
+            rel="noopener"
+            class="hidden shrink-0 text-sm font-medium text-accent-strong hover:underline sm:inline"
+          >
+            GitHub org →
+          </a>
+        </div>
+      )
+    }
+
+    <div class="mt-10 grid gap-6 md:grid-cols-3">
+      {entries.map((entry) => <ProjectCard entry={entry} />)}
+    </div>
+  </div>
+</section>

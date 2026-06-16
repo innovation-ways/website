@@ -1,0 +1,8 @@
+<!-- Concept A — "Converging Ways" double up-chevron (aperture / forward momentum).
+     Mono mark (currentColor) + single teal accent (the leading top chevron).
+     currentColor inherits the theme: text-ink on light, paper on dark when inlined. -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" fill="none"
+     stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M7 24 L16 15 L25 24" stroke="currentColor"/>
+  <path d="M7 15 L16 6 L25 15" stroke="#0D9488"/>
+</svg>

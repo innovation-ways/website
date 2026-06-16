@@ -1,0 +1,36 @@
+---
+const reasons = [
+  {
+    title: "Production discipline, rare in AI",
+    body:
+      "Test-driven, evaluated, observable. Built to run unattended — not to look impressive in a demo and fall over in production.",
+  },
+  {
+    title: "Founder-led — direct access",
+    body:
+      "The person on the call is the person doing the work. No layers, no hand-off to juniors, no translation loss.",
+  },
+  {
+    title: "Two decades of systems that can't fail",
+    body:
+      "Revenue-critical billing at telecom scale. The instinct for what breaks in production — and what it costs — is hard-won, not theoretical.",
+  },
+];
+---
+
+<section class="border-t border-line bg-surface">
+  <div class="mx-auto max-w-6xl px-6 py-16 sm:py-20">
+    <h2 class="text-2xl font-semibold sm:text-3xl">Why Innovation Ways</h2>
+    <div class="mt-10 grid gap-8 sm:grid-cols-3">
+      {
+        reasons.map((r) => (
+          <div class="reveal">
+            <div class="h-1 w-8 rounded-full bg-accent" />
+            <h3 class="mt-4 text-lg font-semibold text-ink">{r.title}</h3>
+            <p class="mt-2 text-sm text-muted">{r.body}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

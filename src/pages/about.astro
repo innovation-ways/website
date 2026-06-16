@@ -1,0 +1,108 @@
+---
+import { existsSync } from "node:fs";
+import Base from "../layouts/Base.astro";
+import FooterCta from "../components/FooterCta.astro";
+import Monogram from "../components/Monogram.astro";
+import AtmosphericBreak from "../components/AtmosphericBreak.astro";
+import ExperienceMap from "../components/ExperienceMap.astro";
+
+// Founder portrait — same asset as the homepage Founder section. Graceful
+// fallback to the monogram if the file isn't present.
+const portrait = "/founder/sergio.jpg";
+const hasPortrait = existsSync(`public${portrait}`);
+---
+
+<Base
+  path="/about"
+  title="About — Innovation Ways"
+  description="Innovation Ways is a Telecom BSS consultancy entering the AI market via open-source projects. Founded and run by Sérgio Gaspar, Lisbon."
+>
+  <section class="mx-auto max-w-3xl px-6 pt-20 pb-8 sm:pt-24">
+    <h1 class="text-4xl font-semibold sm:text-5xl">About</h1>
+
+    <div class="mt-8 space-y-5 text-lg text-muted">
+      <p>
+        Innovation Ways is a Telecom BSS consultancy. For two decades that has meant
+        designing, building, and owning mission-critical billing systems at scale — the
+        kind where a wrong number is a regulator's letter, not a tidy bug ticket. The
+        company now brings that same production discipline to AI, and builds it in the open.
+      </p>
+      <p>
+        The conviction behind it is simple: in AI, the model is becoming a commodity. The
+        durable value is in the engineering around it — orchestration, retrieval, evaluation,
+        observability, and the verification layer that lets a system run unattended. It's the
+        same discipline that keeps revenue-critical billing running at telecom scale.
+      </p>
+    </div>
+
+    <div class="mt-12 border-t border-line pt-10">
+      <h2 class="text-2xl font-semibold">Founder</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-[10rem_1fr] sm:gap-8">
+        <!-- Portrait -->
+        <div>
+          {
+            hasPortrait ? (
+              <div class="iw-photo aspect-[4/5] w-32 rounded-2xl border border-line shadow-sm sm:w-40">
+                <img
+                  src={portrait}
+                  alt="Sérgio Gaspar, founder of Innovation Ways"
+                  width="640"
+                  height="800"
+                  loading="lazy"
+                />
+              </div>
+            ) : (
+              <Monogram class="h-20 w-20 text-2xl" />
+            )
+          }
+        </div>
+
+        <!-- Name + bio + links -->
+        <div>
+          <p class="font-display text-xl font-medium text-ink">
+            Sérgio Gaspar — Founder &amp; Principal Engineer
+          </p>
+          <div class="mt-4 space-y-4 text-muted">
+            <p>
+          Twenty years designing, building, and owning critical back-office systems
+          end-to-end — telecom billing, securities settlement, insurance documentation.
+          Sole developer of a Swiss operator's invoicing system that produces millions of
+          invoices a month, with zero major production incidents across successive platform
+          upgrades.
+        </p>
+        <p>
+          Through Innovation Ways, that work now extends into applied AI: an AI-orchestration
+          platform (IW AI Core), a production AI podcast platform (PodForger), and an on-prem
+          multi-agent retrieval system built for a Swiss telecom operator. Fully remote from
+          Lisbon. English C2, French C1.
+        </p>
+      </div>
+      <div class="mt-6 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+        <a
+          href="https://github.com/innovation-ways"
+          rel="noopener"
+          class="text-accent-strong hover:underline"
+        >
+          See the open-source work on GitHub →
+        </a>
+        <a
+          href="https://www.linkedin.com/in/sergiomgaspar"
+          rel="noopener"
+          target="_blank"
+          class="text-accent-strong hover:underline"
+        >
+          Sérgio on LinkedIn →
+        </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <AtmosphericBreak
+    src="/atmos/about.jpg"
+    alt="Europe — two decades of work across the continent"
+    height="h-64 sm:h-80"
+  />
+  <ExperienceMap />
+  <FooterCta />
+</Base>

@@ -1,0 +1,18 @@
+---
+// Teal monogram placeholder (swap for a real founder photo later).
+interface Props {
+  initials?: string;
+  class?: string;
+}
+const { initials = "SG", class: className = "" } = Astro.props;
+---
+
+<span
+  class:list={[
+    "inline-flex aspect-square items-center justify-center rounded-full bg-accent/10 font-display font-semibold text-accent-strong select-none ring-1 ring-accent/20",
+    className,
+  ]}
+  aria-hidden="true"
+>
+  {initials}
+</span>

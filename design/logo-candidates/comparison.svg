@@ -1,0 +1,99 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="525" viewBox="0 0 1000 525">
+  <rect width="1000" height="525" fill="#FFFFFF"/>
+  <text x="40" y="40" font-family="Space Grotesk" font-weight="700" font-size="22" fill="#222631">Innovation Ways — logo candidates</text>
+  <text x="40" y="60" font-family="Space Grotesk" font-size="13" fill="#6B7280">favicon 16/32/64 (light · dark) · teal app icon · Nav lockup (light · dark) — Space Grotesk 500, "Ways" in teal</text>
+  <line x1="40" y1="78" x2="960" y2="78" stroke="#E6E8EC"/>
+  <text x="40" y="120" font-family="Space Grotesk" font-weight="700" font-size="18" fill="#222631">CONCEPT A</text><text x="158" y="120" font-family="Space Grotesk" font-size="14" fill="#6B7280">— Converging Ways · double up-chevron (aperture / momentum)</text>
+    <rect x="40" y="142" width="22" height="22" rx="3.96" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(43,145) scale(0.5)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#222631" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#0D9488" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="51" y="177" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">16px</text>
+    <rect x="110" y="142" width="42.24" height="42.24" rx="7.6032" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(115.12,147.12) scale(1)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#222631" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#0D9488" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="131.12" y="197.24" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">32px</text>
+    <rect x="190" y="142" width="84.48" height="84.48" rx="15.2064" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(200.24,152.24) scale(2)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#222631" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#0D9488" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="232.24" y="239.48000000000002" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">64px</text>
+    <rect x="300" y="142" width="22" height="22" rx="3.96" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(303,145) scale(0.5)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#EDEFF2" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#2DD4BF" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="311" y="177" font-family="Space Grotesk" font-size="10" fill="#8A94A6" text-anchor="middle">16px</text>
+    <rect x="370" y="142" width="42.24" height="42.24" rx="7.6032" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(375.12,147.12) scale(1)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#EDEFF2" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#2DD4BF" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="391.12" y="197.24" font-family="Space Grotesk" font-size="10" fill="#8A94A6" text-anchor="middle">32px</text>
+    <rect x="450" y="142" width="84.48" height="84.48" rx="15.2064" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(460.24,152.24) scale(2)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#EDEFF2" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#2DD4BF" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="492.24" y="239.48000000000002" font-family="Space Grotesk" font-size="10" fill="#8A94A6" text-anchor="middle">64px</text>
+    <rect x="565" y="142" width="64" height="64" rx="14.08" fill="#0D9488"/>
+    <g transform="translate(577.8,154.8) scale(1.2)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#FFFFFF" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#FFFFFF" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="597" y="220" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">app icon</text>
+    <rect x="660" y="142" width="300" height="64" rx="10" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(676,159) scale(0.9375)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#222631" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#0D9488" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="718" y="181" font-family="Space Grotesk" font-weight="500" font-size="21" letter-spacing="-0.3" fill="#222631">Innovation<tspan fill="#0D9488"> Ways</tspan></text>
+    <rect x="660" y="220" width="300" height="64" rx="10" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(676,237) scale(0.9375)">
+      <path d="M7 24 L16 15 L25 24" fill="none" stroke="#EDEFF2" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/>
+      <path d="M7 15 L16 6 L25 15" fill="none" stroke="#2DD4BF" stroke-width="3.1" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="718" y="259" font-family="Space Grotesk" font-weight="500" font-size="21" letter-spacing="-0.3" fill="#EDEFF2">Innovation<tspan fill="#2DD4BF"> Ways</tspan></text>
+  <line x1="40" y1="300" x2="960" y2="300" stroke="#E6E8EC"/>
+  <text x="40" y="340" font-family="Space Grotesk" font-weight="700" font-size="18" fill="#222631">CONCEPT B</text><text x="158" y="340" font-family="Space Grotesk" font-size="14" fill="#6B7280">— IW monogram · teal I + ink W</text>
+    <rect x="40" y="362" width="22" height="22" rx="3.96" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(43,365) scale(0.5)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#0D9488" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#222631" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="51" y="397" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">16px</text>
+    <rect x="110" y="362" width="42.24" height="42.24" rx="7.6032" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(115.12,367.12) scale(1)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#0D9488" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#222631" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="131.12" y="417.24" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">32px</text>
+    <rect x="190" y="362" width="84.48" height="84.48" rx="15.2064" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(200.24,372.24) scale(2)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#0D9488" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#222631" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="232.24" y="459.48" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">64px</text>
+    <rect x="300" y="362" width="22" height="22" rx="3.96" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(303,365) scale(0.5)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#2DD4BF" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#EDEFF2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="311" y="397" font-family="Space Grotesk" font-size="10" fill="#8A94A6" text-anchor="middle">16px</text>
+    <rect x="370" y="362" width="42.24" height="42.24" rx="7.6032" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(375.12,367.12) scale(1)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#2DD4BF" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#EDEFF2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="391.12" y="417.24" font-family="Space Grotesk" font-size="10" fill="#8A94A6" text-anchor="middle">32px</text>
+    <rect x="450" y="362" width="84.48" height="84.48" rx="15.2064" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(460.24,372.24) scale(2)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#2DD4BF" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#EDEFF2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="492.24" y="459.48" font-family="Space Grotesk" font-size="10" fill="#8A94A6" text-anchor="middle">64px</text>
+    <rect x="565" y="362" width="64" height="64" rx="14.08" fill="#0D9488"/>
+    <g transform="translate(577.8,374.8) scale(1.2)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#FFFFFF" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="597" y="440" font-family="Space Grotesk" font-size="10" fill="#6B7280" text-anchor="middle">app icon</text>
+    <rect x="660" y="362" width="300" height="64" rx="10" fill="#FCFCFC" stroke="#E6E8EC"/>
+    <g transform="translate(676,379) scale(0.9375)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#0D9488" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#222631" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="718" y="401" font-family="Space Grotesk" font-weight="500" font-size="21" letter-spacing="-0.3" fill="#222631">Innovation<tspan fill="#0D9488"> Ways</tspan></text>
+    <rect x="660" y="440" width="300" height="64" rx="10" fill="#181D29" stroke="#2B3242"/>
+    <g transform="translate(676,457) scale(0.9375)">
+    <path d="M6.6 8.5 V23.5" fill="none" stroke="#2DD4BF" stroke-width="3.2" stroke-linecap="round"/>
+    <path d="M12.5 8.5 L15.7 23.5 L19.9 13.8 L24.1 23.5 L27.3 8.5" fill="none" stroke="#EDEFF2" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/></g>
+    <text x="718" y="479" font-family="Space Grotesk" font-weight="500" font-size="21" letter-spacing="-0.3" fill="#EDEFF2">Innovation<tspan fill="#2DD4BF"> Ways</tspan></text>
+</svg>

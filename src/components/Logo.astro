@@ -1,0 +1,44 @@
+---
+// Innovation Ways logo — the canonical "IW" monogram (teal I + ink W) + wordmark.
+// Theme-aware: the W inherits `currentColor` (text-ink), the I uses the teal accent token,
+// so both flip correctly across the light/dark toggle. Mark geometry matches the favicon set.
+interface Props {
+  /** Mark height in px (wordmark scales with the parent font-size). */
+  size?: number;
+  /** Show the "Innovation Ways" wordmark beside the mark. */
+  showWordmark?: boolean;
+  /** Extra classes on the root (e.g. text-size / color context). */
+  class?: string;
+}
+const { size = 28, showWordmark = true, class: className = "" } = Astro.props;
+---
+
+<span class:list={["inline-flex items-center gap-2.5 text-ink", className]}>
+  <svg
+    width={size}
+    height={size}
+    viewBox="0 0 32 32"
+    fill="none"
+    class="shrink-0"
+    role="img"
+    aria-label={showWordmark ? undefined : "Innovation Ways"}
+    aria-hidden={showWordmark ? "true" : undefined}
+  >
+    <path
+      d="M6 8 V24"
+      stroke="var(--color-accent)"
+      stroke-width="3.2"
+      stroke-linecap="round"></path>
+    <path
+      d="M13.5 8 L16.7 24 L20 14.5 L23.3 24 L26.5 8"
+      stroke="currentColor"
+      stroke-width="3.2"
+      stroke-linecap="round"
+      stroke-linejoin="round"></path>
+  </svg>
+  {
+    showWordmark && (
+      <span class="font-display font-semibold tracking-tight">Innovation&nbsp;Ways</span>
+    )
+  }
+</span>

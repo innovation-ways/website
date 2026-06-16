@@ -1,0 +1,44 @@
+---
+import CoverArt from "./CoverArt.astro";
+// Draft copy — refine in the content pass. Positioning per docs/website_planning.md §2.
+---
+
+<section class="relative overflow-hidden">
+  <div
+    class="pointer-events-none absolute inset-0 opacity-60 [mask-image:linear-gradient(to_left,black,transparent_65%)]"
+    aria-hidden="true"
+  >
+    <CoverArt seed="innovation-ways" variant="banner" class="h-full w-full" />
+  </div>
+
+  <div class="relative mx-auto max-w-6xl px-6 pt-20 pb-16 sm:pt-28 sm:pb-24">
+    <p class="text-sm font-medium tracking-wide text-accent-strong uppercase">
+      Telecom BSS engineering · Applied AI
+    </p>
+    <h1 class="mt-4 max-w-4xl text-5xl leading-[1.03] font-semibold tracking-tight sm:text-6xl lg:text-7xl">
+      Mission-critical systems.<br class="hidden sm:inline" />
+      Production discipline. Built in the open.
+    </h1>
+    <p class="mt-6 max-w-2xl text-lg text-muted">
+      Innovation Ways is a Telecom BSS consultancy — two decades of billing systems
+      that can't fail — now bringing that same production discipline to AI, and building
+      it in the open: <span class="text-ink">IW&nbsp;AI&nbsp;Core</span> and
+      <span class="text-ink">PodForger</span> are where it shows.
+    </p>
+
+    <div class="mt-9 flex flex-wrap items-center gap-3">
+      <a
+        href="/contact"
+        class="rounded-lg bg-accent px-5 py-3 text-sm font-medium text-white transition-colors hover:bg-accent-strong"
+      >
+        Start a conversation
+      </a>
+      <a
+        href="/work"
+        class="rounded-lg border border-line px-5 py-3 text-sm font-medium text-ink transition-colors hover:bg-surface"
+      >
+        See the work →
+      </a>
+    </div>
+  </div>
+</section>

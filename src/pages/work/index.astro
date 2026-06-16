@@ -1,0 +1,31 @@
+---
+import Base from "../../layouts/Base.astro";
+import WorkGrid from "../../components/WorkGrid.astro";
+import AtmosphericBreak from "../../components/AtmosphericBreak.astro";
+import FooterCta from "../../components/FooterCta.astro";
+---
+
+<Base
+  path="/work"
+  title="Work — Innovation Ways"
+  description="Open-source projects and engineering work from Innovation Ways: IW AI Core, PodForger, and an on-prem multi-agent RAG platform."
+>
+  <section class="mx-auto max-w-6xl px-6 pt-20 pb-4 sm:pt-24">
+    <h1 class="text-4xl font-semibold sm:text-5xl">Work</h1>
+    <p class="mt-5 max-w-2xl text-lg text-muted">
+      Real systems, described as engineering — not marketing. Two are open source under the
+      <a
+        href="https://github.com/innovation-ways"
+        rel="noopener"
+        class="text-accent-strong hover:underline">Innovation Ways GitHub org</a
+      >; the third was a client engagement, shown here at the architecture level.
+    </p>
+  </section>
+  <AtmosphericBreak
+    src="/atmos/work-detail.jpg"
+    alt="Production engineering detail — neatly routed infrastructure"
+    height="h-64 sm:h-80"
+  />
+  <WorkGrid withHeading={false} />
+  <FooterCta />
+</Base>
