@@ -11,6 +11,15 @@ const insights = defineCollection({
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),
+    // Optional cover image. Usually you don't set this: drop a file at
+    // public/covers/<slug>.<webp|png|jpg> and it's picked up by convention
+    // (see src/lib/covers.ts). Set `image` only to override that path.
+    // `imageAlt` defaults to the title when omitted.
+    image: z.string().optional(),
+    imageAlt: z.string().optional(),
+    // Topic used by the /insights filter bar. Free string — new topics appear
+    // as filter pills automatically. Keep the vocabulary small and reuse names.
+    category: z.string().default("Field notes"),
     draft: z.boolean().default(false),
   }),
 });
@@ -26,6 +35,17 @@ const work = defineCollection({
     status: z.enum(["oss", "private"]),
     order: z.number().default(99),
     diagram: z.string().optional(),
+    // Optional product screenshots rendered as a gallery on /work/[slug].
+    // Files live under /public (e.g. /screenshots/<project>/<file>.png).
+    screenshots: z
+      .array(
+        z.object({
+          src: z.string(),
+          alt: z.string(),
+          caption: z.string().optional(),
+        }),
+      )
+      .optional(),
     draft: z.boolean().default(false),
   }),
 });

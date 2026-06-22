@@ -1,7 +1,7 @@
 ---
 import { getCollection } from "astro:content";
 import Base from "../../layouts/Base.astro";
-import InsightsList from "../../components/InsightsList.astro";
+import InsightsBrowser from "../../components/InsightsBrowser.astro";
 import FooterCta from "../../components/FooterCta.astro";
 
 const posts = (await getCollection("insights"))
@@ -21,6 +21,8 @@ const posts = (await getCollection("insights"))
       systems in production.
     </p>
   </section>
-  <InsightsList posts={posts} withHeading={false} />
+  <section class="pb-4">
+    <InsightsBrowser posts={posts} />
+  </section>
   <FooterCta />
 </Base>

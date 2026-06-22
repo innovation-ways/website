@@ -13,7 +13,7 @@ import FooterCta from "../components/FooterCta.astro";
 const posts = (await getCollection("insights"))
   .filter((p) => !p.data.draft)
   .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
-  .slice(0, 4);
+  .slice(0, 3);
 ---
 
 <Base path="/">
@@ -28,7 +28,7 @@ const posts = (await getCollection("insights"))
     lead="Two decades on systems where a billing run or a settlement can't be re-run — that discipline is what Innovation Ways brings to applied AI."
   />
   <WorkGrid />
-  <InsightsList posts={posts} />
+  <InsightsList posts={posts} seeAll />
   <Founder />
   <FooterCta />
 </Base>

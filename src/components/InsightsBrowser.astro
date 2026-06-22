@@ -1,0 +1,133 @@
+---
+import type { CollectionEntry } from "astro:content";
+import CoverArt from "./CoverArt.astro";
+import { resolveCover } from "../lib/covers";
+
+interface Props {
+  posts: CollectionEntry<"insights">[];
+}
+const { posts } = Astro.props;
+
+const items = posts.map((post) => ({
+  post,
+  cover: resolveCover(post.id, post.data.image),
+  category: post.data.category,
+}));
+
+// Filter pills, derived from the posts present (with counts, Agathon-style).
+// "All" first, then each topic alphabetically.
+const counts = new Map<string, number>();
+for (const { category } of items) {
+  counts.set(category, (counts.get(category) ?? 0) + 1);
+}
+const filters = [
+  { key: "all", label: "All", count: items.length },
+  ...[...counts.entries()]
+    .sort((a, b) => a[0].localeCompare(b[0]))
+    .map(([key, count]) => ({ key, label: key, count })),
+];
+
+const fmt = (d: Date) =>
+  d.toLocaleDateString("en-GB", { year: "numeric", month: "short", day: "numeric" });
+---
+
+<div class="mx-auto max-w-6xl px-6">
+  {
+    filters.length > 2 && (
+      <div
+        class="flex flex-wrap gap-2"
+        role="group"
+        aria-label="Filter insights by topic"
+        data-insights-filter
+      >
+        {filters.map((f) => (
+          <button
+            type="button"
+            data-filter={f.key}
+            aria-pressed={f.key === "all" ? "true" : "false"}
+            class="rounded-full border border-line px-3.5 py-1.5 text-sm text-muted transition-colors hover:bg-surface aria-pressed:border-accent aria-pressed:bg-accent aria-pressed:text-white"
+          >
+            {f.label}
+            <span class="ml-1 text-xs opacity-70">{f.count}</span>
+          </button>
+        ))}
+      </div>
+    )
+  }
+
+  <ul class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
+    {
+      items.map(({ post, cover, category }) => (
+        <li data-insights-card data-category={category}>
+          <a
+            href={`/insights/${post.id}`}
+            class="group flex h-full flex-col overflow-hidden rounded-xl border border-line bg-paper transition-shadow hover:shadow-md"
+          >
+            <div class="aspect-[16/9] overflow-hidden border-b border-line">
+              {cover ? (
+                <img
+                  src={cover}
+                  alt={post.data.imageAlt ?? post.data.title}
+                  loading="lazy"
+                  class="h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
+                />
+              ) : (
+                <CoverArt seed={post.id} variant="thumb" class="h-full w-full" />
+              )}
+            </div>
+            <div class="flex flex-1 flex-col p-5">
+              <span class="text-xs font-medium tracking-wide text-accent-strong uppercase">
+                {category}
+              </span>
+              <h3 class="mt-2 font-display text-lg font-medium text-ink group-hover:text-accent-strong">
+                {post.data.title}
+              </h3>
+              <p class="mt-2 line-clamp-3 text-sm text-muted">
+                {post.data.description}
+              </p>
+              <time
+                datetime={post.data.pubDate.toISOString()}
+                class="mt-4 block text-xs text-muted"
+              >
+                {fmt(post.data.pubDate)}
+              </time>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+
+  <p data-insights-empty hidden class="mt-10 text-muted">
+    Nothing here yet — try another topic.
+  </p>
+</div>
+
+<script>
+  // Progressive enhancement: with JS off, every card shows. With JS on, the
+  // pills filter the grid in place by data-category. No framework, no reload.
+  const bar = document.querySelector("[data-insights-filter]");
+  if (bar) {
+    const buttons = Array.from(bar.querySelectorAll<HTMLButtonElement>("button"));
+    const cards = Array.from(
+      document.querySelectorAll<HTMLElement>("[data-insights-card]"),
+    );
+    const empty = document.querySelector<HTMLElement>("[data-insights-empty]");
+
+    bar.addEventListener("click", (e) => {
+      const btn = (e.target as HTMLElement).closest<HTMLButtonElement>("button");
+      if (!btn) return;
+      const filter = btn.dataset.filter;
+      buttons.forEach((b) =>
+        b.setAttribute("aria-pressed", String(b === btn)),
+      );
+      let visible = 0;
+      cards.forEach((card) => {
+        const show = filter === "all" || card.dataset.category === filter;
+        card.hidden = !show;
+        if (show) visible += 1;
+      });
+      if (empty) empty.hidden = visible !== 0;
+    });
+  }
+</script>

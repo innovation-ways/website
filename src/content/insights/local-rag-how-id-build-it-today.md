@@ -2,6 +2,7 @@
 title: "I built a local RAG system 14 months ago — here's how I'd build it today"
 description: "RAG matured, and AI agents changed how you build. What I'd change about CORE, what I'd keep, and the part agents didn't speed up: the judgment about where a system must not be trusted."
 pubDate: 2026-06-05
+category: "Retrieval"
 draft: false
 ---
 

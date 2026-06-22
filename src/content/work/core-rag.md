@@ -3,7 +3,7 @@ name: "CORE — on-prem multi-agent RAG"
 tagline: "A 100%-local, five-agent retrieval platform built for a Swiss telecom operator: document RAG with citations and RBAC, NL→SQL behind a validation layer, code analysis, and an orchestrator."
 tags: ["LangGraph", "pgvector", "Ollama", "RBAC", "On-prem"]
 status: "private"
-order: 3
+order: 4
 diagram: "/diagrams/core.svg"
 ---
 

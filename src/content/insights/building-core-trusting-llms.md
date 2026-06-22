@@ -2,6 +2,7 @@
 title: "Building CORE: trusting LLMs where being wrong costs money"
 description: "I built a 100%-local, five-agent AI platform for a regulated enterprise. The lasting lesson wasn't the demo — it was knowing when to trust an LLM where errors cost real money, and when not to."
 pubDate: 2026-06-04
+category: "Case studies"
 draft: false
 ---
 

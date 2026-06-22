@@ -1,0 +1,140 @@
+<svg xmlns="http://www.w3.org/2000/svg"
+     viewBox="0 0 880 600"
+     width="880"
+     height="600"
+     style="width:100%;height:auto"
+     role="img"
+     aria-labelledby="iwrag-title iwrag-desc">
+
+  <title id="iwrag-title">IW RAG: Local Agentic RAG, Measured</title>
+  <desc id="iwrag-desc">A question flows through an access-control pre-filter, then hybrid retrieval combining dense pgvector search with BM25 lexical search and reciprocal-rank fusion, then a cross-encoder reranker, into an adaptive-RAG agent that grades its own retrieval and generation and fails closed, producing a grounded, cited answer. A single Postgres store backs retrieval. A Benchmark Studio measures the whole pipeline on quality, speed, and VRAM. Everything runs locally on one 32 GB GPU with open-weight models.</desc>
+
+  <defs>
+    <marker id="arr" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#94a3b8"/>
+    </marker>
+    <marker id="arr-dash" markerWidth="8" markerHeight="8" refX="6" refY="3" orient="auto" markerUnits="strokeWidth">
+      <path d="M0,0 L0,6 L8,3 z" fill="#cbd5e1"/>
+    </marker>
+  </defs>
+
+  <!-- ═══ NODE 1: Question ═══ -->
+  <rect x="140" y="28" width="300" height="54" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="290" y="52" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#1f2933">Question</text>
+  <text x="290" y="70" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">natural language, from a known caller</text>
+
+  <!-- Arrow → ACL -->
+  <line x1="290" y1="82" x2="290" y2="104" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 2: ACL pre-filter ═══ -->
+  <rect x="140" y="104" width="300" height="60" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="290" y="130" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#1f2933">Access-control pre-filter</text>
+  <text x="290" y="150" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">caller can only ever retrieve permitted documents</text>
+
+  <!-- Arrow → Hybrid retrieval -->
+  <line x1="290" y1="164" x2="290" y2="186" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 3: Hybrid retrieval ═══ -->
+  <rect x="140" y="186" width="300" height="84" rx="10"
+        fill="#ffffff" stroke="#e2e8f0" stroke-width="1.5"/>
+  <text x="290" y="212" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#1f2933">Hybrid retrieval</text>
+  <text x="290" y="232" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">dense (pgvector) + BM25 lexical</text>
+  <text x="290" y="250" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#64748b">reciprocal-rank fusion → rerank → top-k</text>
+
+  <!-- Arrow → Agent -->
+  <line x1="290" y1="270" x2="290" y2="292" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 4: Adaptive-RAG agent (TEAL) ═══ -->
+  <rect x="140" y="292" width="300" height="96" rx="10"
+        fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+  <text x="290" y="320" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#0d9488">Adaptive-RAG agent</text>
+  <text x="290" y="340" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">grades retrieval · grades the answer</text>
+  <text x="290" y="358" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">re-retrieves when weak, or fails closed</text>
+  <text x="290" y="376" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#0f766e">guarded · PII-scrubbed · audited</text>
+
+  <!-- Arrow → Answer -->
+  <line x1="290" y1="388" x2="290" y2="410" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ NODE 5: Grounded answer ═══ -->
+  <rect x="140" y="410" width="300" height="62" rx="10"
+        fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+  <text x="290" y="436" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#0d9488">Grounded, cited answer</text>
+  <text x="290" y="456" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">inline citations · or an honest refusal</text>
+
+  <!-- ═══ NODE 6: Postgres store (TEAL) — right ═══ -->
+  <rect x="580" y="190" width="240" height="112" rx="10"
+        fill="#ffffff" stroke="#0d9488" stroke-width="2"/>
+  <text x="700" y="220" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="14" font-weight="600" fill="#0d9488">Single Postgres store</text>
+  <text x="700" y="242" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">vectors · lexical index</text>
+  <text x="700" y="260" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">metadata · ACL tags</text>
+  <text x="700" y="278" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#0f766e">append-only audit log</text>
+
+  <!-- Connector: store ↔ hybrid retrieval -->
+  <line x1="580" y1="228" x2="440" y2="228" stroke="#94a3b8" stroke-width="1.5" marker-end="url(#arr)"/>
+
+  <!-- ═══ BENCHMARK STUDIO: dashed observer — top right ═══ -->
+  <rect x="580" y="36" width="240" height="96" rx="10"
+        fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="6,4"/>
+  <text x="700" y="66" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="13" font-weight="600" fill="#64748b">Benchmark Studio</text>
+  <text x="700" y="86" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#94a3b8">quality · speed · VRAM</text>
+  <text x="700" y="104" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="400" fill="#94a3b8">statistical A/B comparison</text>
+  <text x="700" y="121" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="600" fill="#94a3b8">measured, not asserted</text>
+
+  <!-- Dashed connector: Benchmark Studio measures the agent/pipeline -->
+  <polyline points="580,100 510,100 510,340 440,340"
+            fill="none" stroke="#cbd5e1" stroke-width="1.5" stroke-dasharray="5,4"
+            marker-end="url(#arr-dash)"/>
+
+  <!-- ═══ Footer caption ═══ -->
+  <text x="290" y="508" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="12" font-weight="600" fill="#0d9488">100% local · single 32 GB GPU · open-weight models</text>
+  <text x="290" y="526" text-anchor="middle"
+        font-family="'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif"
+        font-size="11" font-weight="400" fill="#94a3b8">generator, embedder, reranker, guards and judges all served on-box</text>
+
+</svg>

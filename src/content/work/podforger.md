@@ -3,8 +3,18 @@ name: "PodForger"
 tagline: "A full-stack platform that turns RSS feeds into multi-speaker AI audio podcasts — LLM scripting and self-hosted GPU text-to-speech, running in production."
 tags: ["FastAPI", "Next.js 16", "async SQLAlchemy", "Multi-LLM", "GPU TTS", "OSS"]
 status: "oss"
-order: 2
+order: 3
 diagram: "/diagrams/podforger.svg"
+screenshots:
+  - src: "/screenshots/podforger/Podforger_home.png"
+    alt: "PodForger home dashboard showing a library of generated podcasts"
+    caption: "The home dashboard — your library of generated podcasts."
+  - src: "/screenshots/podforger/Podforger_podcast.png"
+    alt: "PodForger podcast page for managing episodes and settings"
+    caption: "A podcast — manage its episodes, voices and generation settings."
+  - src: "/screenshots/podforger/Podforger_episode.png"
+    alt: "PodForger episode page with audio player and the generated multi-speaker script"
+    caption: "An episode — listen, read the generated multi-speaker script, and share."
 ---
 
 ## What it is

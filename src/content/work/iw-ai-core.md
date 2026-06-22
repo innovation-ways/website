@@ -5,6 +5,19 @@ tags: ["Python 3.12", "FastAPI", "PostgreSQL", "llama-index", "OSS · MIT"]
 status: "oss"
 order: 1
 diagram: "/diagrams/iw-ai-core.svg"
+screenshots:
+  - src: "/screenshots/iw-ai-core/screenshot-dashboard.png"
+    alt: "IW AI Core dashboard showing active batches, recent activity and git status across projects"
+    caption: "The dashboard — active batches, recent activity and git status across every registered project."
+  - src: "/screenshots/iw-ai-core/screenshot-item-detail.png"
+    alt: "IW AI Core work-item detail showing the step pipeline, agent assignments and fix cycles"
+    caption: "A work item's pipeline — agent assignments, fix cycles and quality gates, each run in its own isolated git worktree so parallel runs never collide."
+  - src: "/screenshots/iw-ai-core/screenshot-code-qa.png"
+    alt: "IW AI Core code-understanding view with an architecture map and a RAG-backed Q&A panel"
+    caption: "Code Understanding — an architecture map of a project with a RAG-backed Q&A panel for asking questions about the codebase."
+  - src: "/screenshots/iw-ai-core/screenshot-research.png"
+    alt: "IW AI Core research catalogue listing filed research documents with mode tags and search"
+    caption: "The research catalogue — filed research documents with mode tags and full-text search."
 ---
 
 ## What it is
@@ -17,7 +30,9 @@ AI coding agents are capable but awkward to run at any scale. Orchestrate more t
 
 ## How it works
 
-A single daemon polls Postgres every 60 seconds for approved work ("batches"). For each one it creates an isolated **git worktree**, launches an LLM agent (**Claude Code** or **OpenCode**), runs fix cycles against the project's quality gates, and squash-merges the result back to main. A FastAPI + htmx dashboard — server-rendered, with live updates over SSE — gives real-time visibility into every run. The `iw` CLI is the bridge between agents and the database: agents report progress with commands like `iw step-done`, so the daemon always knows the true state.
+A single daemon polls Postgres every 60 seconds for approved work ("batches"). For each one it creates an isolated **git worktree**, launches an LLM agent (**Claude Code** or **OpenCode**), runs fix cycles against the project's quality gates, and squash-merges the result back to main. Because every run lives in its own worktree, multiple workstreams execute **in parallel** without colliding — the database, not a pile of file locks, arbitrates who works on what. A FastAPI + htmx dashboard — server-rendered, with live updates over SSE — gives real-time visibility into every run, down to the individual steps, fix cycles, and agent assignments of a single work item. The `iw` CLI is the bridge between agents and the database: agents report progress with commands like `iw step-done`, so the daemon always knows the true state.
+
+The dashboard also folds in a **Code Understanding** view — an architecture map of each registered project with a RAG-backed Q&A panel, so you can ask questions about a codebase and get answers grounded in the actual repository, not a guess.
 
 ## Key decisions
 

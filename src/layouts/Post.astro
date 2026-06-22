@@ -1,6 +1,7 @@
 ---
 import Base from "./Base.astro";
 import CoverArt from "../components/CoverArt.astro";
+import { resolveCover } from "../lib/covers";
 import type { CollectionEntry } from "astro:content";
 
 interface Props {
@@ -8,6 +9,7 @@ interface Props {
 }
 const { post } = Astro.props;
 const { title, description, pubDate, updatedDate } = post.data;
+const cover = resolveCover(post.id, post.data.image);
 const fmt = (d: Date) =>
   d.toLocaleDateString("en-GB", { year: "numeric", month: "long", day: "numeric" });
 ---
@@ -22,7 +24,17 @@ const fmt = (d: Date) =>
     </p>
 
     <div class="mt-8 h-32 overflow-hidden rounded-xl border border-line sm:h-40">
-      <CoverArt seed={post.id} variant="banner" class="h-full w-full" />
+      {
+        cover ? (
+          <img
+            src={cover}
+            alt={post.data.imageAlt ?? title}
+            class="h-full w-full object-cover"
+          />
+        ) : (
+          <CoverArt seed={post.id} variant="banner" class="h-full w-full" />
+        )
+      }
     </div>
 
     <div class="prose mt-10">
